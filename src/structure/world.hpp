@@ -2,23 +2,29 @@
 #define __WORLD_H
 
 // STD includes
-#include <list>
+#include <vector>
+#include <random>
 
 // Local includes
 #include "chunk.hpp"
+#include "vector/dirVector.hpp"
 
 class World
 {
 public:
-    World();
+    World( std::mt19937 &, int , int, int );
 
 
 private:
 
   // A World is divided into a grid of Chunks
-  // Each Chunk is a 2D array of Pixels
-  std::list<Chunk> m_Chunks;
+  std::vector< std::vector< Chunk > > m_Chunks;
 
+  // Direction vecors for each Corner
+  std::vector< std::vector< DirVector > > m_DirVectors;
+
+  // RNG Source
+  std::mt19937 & m_RNG;
 
 };
 
